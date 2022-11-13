@@ -20,6 +20,15 @@ body{
     align-items: center;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
+.wrapper{
+    position: absolute;
+    top: 0.5px;
+    left: 0;
+    right: 0;
+    bottom: 0.5px;
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
 
 header, footer, main, footer{
     width: 100%;
@@ -61,7 +70,6 @@ footer p{
 .nav, .nav2{
     border: 2px solid black;
     padding: 0.5rem;
-    margin: 0.3rem;
     display: flex;
     justify-content: space-evenly;
 }
