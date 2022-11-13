@@ -28,6 +28,12 @@ header, footer, main, footer{
     text-align: center;
 }
 
+.space{
+    width: 100vw;
+    padding: 1em;
+}
+
+
 header{
     position: sticky;
     background-color: rgb(145, 139, 139);
