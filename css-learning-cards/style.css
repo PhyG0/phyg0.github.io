@@ -34,6 +34,11 @@ header{
     background-image:linear-gradient(to bottom, white, rgb(145, 139, 139));
 }
 
+header h2{
+    margin: 0.35em;
+}
+
+
 main{
     flex-grow: 1;
     background-color: darkgrey;
