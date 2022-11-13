@@ -18,24 +18,17 @@ body{
     display: flex;
     flex-flow: column;
     align-items: center;
+    min-height: 100vh;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
-.wrapper{
-    position: absolute;
-    top: 0.5px;
-    left: 0;
-    right: 0;
-    bottom: 0.5px;
-    overflow-x: hidden;
-    overflow-y: auto; 
-}
+
 
 header, footer, main, footer{
     width: 100%;
     text-align: center;
 }
 
-header, footer{
+header{
     position: sticky;
     background-color: rgb(145, 139, 139);
     background-image:linear-gradient(to bottom, white, rgb(145, 139, 139));
@@ -54,6 +47,7 @@ header{
 
 
 footer{
+    position: sticky;
     bottom: 0;
     padding: 1em;
     background-color: rgb(145, 139, 139);
@@ -175,14 +169,14 @@ article p{
     .main{
         flex-direction: row;
         justify-content: space-evenly;
+        flex-grow: 1;
+        align-items: center;
     }
 
     .article{
         padding: 0;
-    }
-
-    .article{
         width: min(30%, 350px);
+        height: 100%;
     }
 
     .profile img{
