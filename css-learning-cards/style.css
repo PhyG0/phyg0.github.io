@@ -52,8 +52,8 @@ header{
 
 
 footer{
-    position: sticky;
-    bottom: 0;
+    position: fixed; 
+    bottom: 0px;
     padding: 1em;
     background-color: rgb(145, 139, 139);
     background-image:linear-gradient(to top, white, rgb(145, 139, 139));
