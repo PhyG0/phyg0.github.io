@@ -54,5 +54,15 @@
 	<footer class="footer">
 		<p>&copy;<span class="cp"><em>Phygo</em></span>&nbsp;&nbsp; 2023 Inc.</p>
 	</footer>
+	<script>
+		var footer = document.querySelector("footer");
+		var main = document.getElementsByClassName("main")[0];
+		window.addEventListener("scroll", ()=>{
+			footer.style.bottom = 0;
+		});
+		main.addEventListener("touchmove", ()=>{
+			footer.style.bottom = 0;
+		});
+	</script>
 </body>
 </html>
