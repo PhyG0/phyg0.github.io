@@ -23,8 +23,8 @@ body {
   box-sizing: border-box;
   max-width: 100vw;
   font-family: "Poppins", sans-serif;
-  background-color: #ff7700;
-  background-image: url(images/flat-mountains.png);
+  background-color: rgb(46, 40, 40);
+  background-image: url(images/flat-mountains.jpg);
   background-attachment: fixed;
   background-size: cover;
 }
