@@ -2,7 +2,7 @@
 var skillElems = document.querySelectorAll(".inner");
 var navLinks = document.querySelectorAll(".nav");
 
-var skillLevels = [93, 90, 95, 70, 30, 80];
+var skillLevels = [93, 90, 95, 70, 70, 80];
 var skillIncrease = [];
 var skillTiming = { duration : 1000, iteration : 1, fill : "forwards", direction : "normal" };
 
