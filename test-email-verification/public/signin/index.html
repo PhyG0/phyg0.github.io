@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h2>Zchat <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M155.6 17.3C163 3 179.9-3.6 195 1.9L320 47.5l125-45.6c15.1-5.5 32 1.1 39.4 15.4l78.8 152.9c28.8 55.8 10.3 122.3-38.5 156.6L556.1 413l41-15c16.6-6 35 2.5 41 19.1s-2.5 35-19.1 41l-71.1 25.9L476.8 510c-16.6 6.1-35-2.5-41-19.1s2.5-35 19.1-41l41-15-31.3-86.2c-59.4 5.2-116.2-34-130-95.2L320 188.8l-14.6 64.7c-13.8 61.3-70.6 100.4-130 95.2l-31.3 86.2 41 15c16.6 6 25.2 24.4 19.1 41s-24.4 25.2-41 19.1L92.2 484.1 21.1 458.2c-16.6-6.1-25.2-24.4-19.1-41s24.4-25.2 41-19.1l41 15 31.3-86.2C66.5 292.5 48.1 226 76.9 170.2L155.6 17.3zm44 54.4l-27.2 52.8L261.6 157l13.1-57.9L199.6 71.7zm240.9 0L365.4 99.1 378.5 157l89.2-32.5L440.5 71.7z"/></svg></h2>
+            <h1>SignIn to meet new Friends.</h1>
+            <form>
+                <div class="name-div">
+                    <!-- <svg class="email" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>Email -->
+                    <p class="initial"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>Name</p>
+                    <input type="text" class="input-field username" required>
+                </div>
+                <div class="name-div">
+                    <p class="initial"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>Password</p>
+                    <input type="password" class="input-field password" required>
+                </div>
+                <input class="submit" id="submit" type="submit" value="Sign In">
+                <p class="sign-in-p">New to Z-Chat ? <a href="../signup/" class="sign-in">SignUp</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const inputFields = document.querySelectorAll('.input-field');
+
+        inputFields.forEach(inputField=>{
+            inputField.addEventListener('focus', () => {
+                const pTag = inputField.previousElementSibling;
+                pTag.classList.remove("move-left");
+                pTag.classList.add("move-right");
+            });
+
+            inputField.addEventListener('blur', () => {
+                const pTag = inputField.previousElementSibling;
+                pTag.classList.remove("move-right");
+                if(inputField.value == ""){
+                    pTag.classList.add("move-left");
+                    pTag.classList.add("initial");
+                }else{
+                    pTag.classList.remove("initial");
+                    pTag.classList.add("move-right");
+                }
+            });
+        });
+
+        const submit = document.getElementById('submit');
+
+        //Submitting the form to server 
+        submit.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const reqBody = {
+                username: document.getElementsByClassName('username')[0].value,
+                password: document.getElementsByClassName('password')[0].value
+            }
+
+            const response = await fetch('https://jungle-radical-second.glitch.me/user/login', {
+                method: 'POST',
+                headers : { 'Content-Type' : 'application/json' },
+                credentials:"include",
+                body: JSON.stringify(reqBody)
+            });
+
+            const responseData = await response.json();
+
+            if(responseData.accessToken) {
+                window.location.href = "../dashboard/dashboard.html";
+            }else {
+                alert(responseData.message);
+            }
+
+
+        });
+
+    </script>
+</body>
+</html>

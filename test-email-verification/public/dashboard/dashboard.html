@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #222;
+            color: #fff;
+            font-size: 16px;
+            min-height: 100vh;
+            width: 100%;
+            display: grid;
+            place-content: center;
+        }
+        .container {
+            background-color: #2a2929;
+            min-height: 80vh;
+            min-width: 80vw;
+            border: 2px solid rgb(175, 175, 252);
+        }
+        .container h1.loading {
+            font-size: xx-large;
+        }
+
+        .heading {
+            margin-bottom: 2rem;
+        }
+
+        .role {
+            background-color: yellowgreen;
+            padding: 0.3rem;
+        }
+
+        .card {
+            background-color: #222020;
+            display: flex;
+            gap: 2rem;
+            padding: 1rem;
+            align-items: center;
+            border-bottom: 2px solid hsl(0, 0%, 96%, 0.4)
+        }
+
+        .card p {
+            font-size: xx-large;
+        }
+
+        .roles {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .role:nth-child(2) {
+            background-color: crimson;
+        }
+
+        .loading, .error {
+            font-size: xx-large;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .error {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="heading">Registered Users  </h1>
+    <section class="container">
+        <div class="cards">
+            <p class="loading">Loading data....</p>
+        </div>
+    </section>
+    <script>
+
+        const fetchData = async (url) => {
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: { 'Content-Type' : 'application/json', 'Accept' : '*/*', 'credentials': 'include'  },
+                    credentials: 'include',
+                    mode: 'cors'
+                });
+
+                const data = await response.json();
+
+                if(data.Message !== 'Cannot find the jwt cookie in req cookies') {
+                    const roles = Object.keys(data[0].roles);
+                    let str = '';
+                    for(let i = 0; i < data.length; i++) {
+                        str += `
+                            <div class="card">
+                                <p>${data[i].username}</p>
+                                <div class="roles">
+                        `;
+                        
+                        for(let j = 0; j < roles.length; j++) {
+                            if(data[i].roles[roles[j]]) {
+                                str += `<div class="role">${roles[j]}</div>`;
+                            }
+                        }
+                        str += '</div></div>';
+                    }
+                    document.getElementsByClassName('cards')[0].innerHTML = str;
+                }else {
+                    document.getElementsByClassName('cards')[0].innerHTML = '<p class="error">Cannot load data. Please SignUp/SignIn.</p>';
+                }
+        }
+
+        fetchData("https://jungle-radical-second.glitch.me/api/users");
+
+    </script>
+</body>
+</html>
